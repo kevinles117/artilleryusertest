@@ -36,6 +36,7 @@ jobs:
     - name: Sleep
       run: sleep 10s
 
+#DFsfes
 
     - name: Run Artillery Test
       run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
