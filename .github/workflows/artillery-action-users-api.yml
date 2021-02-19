@@ -3,7 +3,7 @@ name: Artillery action to test function users
 on: 
   push:
     branches:
-      -development
+      - development
 
 env:
   NODE_VERSION: '14'
