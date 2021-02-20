@@ -12,13 +12,13 @@ env:
   NODE_VERSION: '14' # version of Node we are using
   NPM_CONFIG_PREFIX: '~/.npm-global' # required to set path for Artillery call
 
-# Sets up ubuntu VM for actions
 jobs:
+  # Sets up ubuntu VM for actions
   setup:
     runs-on: ubuntu-latest
 
-    # Checks out current repo
     steps:
+    # Checks out current repo
     - name: 'Checkout Repository GitHub Action'
       uses: actions/checkout@v2
 
@@ -33,15 +33,16 @@ jobs:
     - name: 'Run npm init'
       run: npm init -y
 
-    # Sets up AWS credentials
+    # Uses AWS-Actions to set up AWS credentials
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
+        aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: us-west-2
 
-    - name: Install artillery globally
+    # Installs Artillery globally
+    - name: Run npm install artillery
       run: npm install -g artillery
 
     # Grabs the current date and time for naming convention
