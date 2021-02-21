@@ -54,11 +54,15 @@ jobs:
     - name: Sleep
       run: sleep 10s
 
-    # Runs artillery test as well as renaming the results of the test with
-    # the proper naming conventions
+    # Runs artillery test
     - name: Run Artillery Test
-      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output test/results/artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
-    # text
+      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output test/results/artillery-test-users-results.json ./test/artillery/artillery-test-users-api.yml
+
+    # Change results file name to follow naming conventions and include date/time  
+    - name: Rename results json
+      run: |
+        cp test/results/artillery-test-users-results.json "test/results/artillery-test-users_${{ steps.date.outputs.date }}.json"
+
     # - name: S3 Uploader
     #   uses: shallwefootball/s3-upload-action@master
     #   with:
