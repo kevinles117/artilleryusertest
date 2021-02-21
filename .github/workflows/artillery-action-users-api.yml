@@ -56,7 +56,7 @@ jobs:
 
     # Runs artillery test
     - name: Run Artillery Test
-      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output test/results/artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
+      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output ./test/results/artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
 
     # - name: S3 Uploader
     #   uses: shallwefootball/s3-upload-action@master
