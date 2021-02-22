@@ -66,15 +66,15 @@ jobs:
     
     # Call artillery
     - name: Run Artillery Test
-      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
+      run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output test/results/artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
 
     - name: Touch file
-      run: touch artillery_${{ steps.date.outputs.date }}.json
+      run: touch test/results/artillery_${{ steps.date.outputs.date }}.json
 
     # Upload the results to S3 bucket
     - name: AWS CLI S3
       run: |
-        aws s3 cp artillery_${{ steps.date.outputs.date }}.json s3://artillery --recursive --exclude "*" --include "artillery*"
+        aws s3 cp test/results/ s3://artillery --recursive --exclude "*" --include "artillery*"
 
     # # Runs artillery test
     # - name: Run Artillery Test
