@@ -69,7 +69,6 @@ jobs:
       run: /home/runner/.npm-global/lib/node_modules/artillery/bin/artillery run --output artillery_${{ steps.date.outputs.date }}.json ./test/artillery/artillery-test-users-api.yml
 
     touch 'artillery_${{ steps.date.outputs.date }}.json'
-    open 'artillery_${{ steps.date.outputs.date }}.json'
 
     # Upload the results to S3 bucket
     - name: AWS CLI S3
